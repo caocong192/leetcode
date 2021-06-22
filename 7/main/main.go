@@ -1,13 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func reverse(x int) int {
 
 	ret := 0
 	for {
 		if x != 0 {
-			if ret*10 < -2<<31/10 || ret > (2<<31-1)*10 {
+			if ret < -math.MaxInt32/10 || ret > math.MaxInt32/10 {
 				return 0
 			}
 			digit := x % 10
@@ -23,7 +26,7 @@ func reverse(x int) int {
 func main() {
 	fmt.Println(1<<31)
 
-	x := -321
+	x := -1463847412
 	ret := reverse(x)
 	fmt.Println(ret)
 }
